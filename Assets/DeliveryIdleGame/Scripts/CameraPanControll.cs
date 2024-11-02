@@ -10,28 +10,15 @@ public class CameraPanControll : MonoBehaviour
 
     void Start()
     {
-        CameraPanSetup();
+        SetupCameraPan();
     }
 
     void Update()
     {
-        mainCamera.transform.position = CameraPanVector();
+        mainCamera.transform.position = PanVector();
     }
 
-    private void CameraPanSetup()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        mainCamera = Camera.main;
-        screenSize = new Vector2(Screen.width, Screen.height);
-        
-        // Use SpriteRenderer.size.x or .y instead of hard coded values if there are changes in resolution scaling later
-        float _camWidth = mainCamera.orthographicSize * mainCamera.aspect;
-        float _camHeight = mainCamera.orthographicSize;
-        mapX = 1920 / 2 - _camWidth;
-        mapY = 1080 / 2 - _camHeight;
-    }
-
-    private Vector3 CameraPanVector()
+    private Vector3 PanVector()
     {
         Vector3 _panDirection = Vector3.zero;
         float _edgeThreshold = 0.5f;
@@ -52,5 +39,18 @@ public class CameraPanControll : MonoBehaviour
         _newPosition.y = Mathf.Clamp(_newPosition.y, -mapY, mapY);
 
         return _newPosition;
+    }
+
+    private void SetupCameraPan()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        screenSize = new Vector2(Screen.width, Screen.height);
+        mainCamera = Camera.main;
+        
+        // Use SpriteRenderer.size.x or .y instead of hard coded values if there are changes in resolution scaling later
+        float _camWidth = mainCamera.orthographicSize * mainCamera.aspect;
+        float _camHeight = mainCamera.orthographicSize;
+        mapX = 19.2f - _camWidth;
+        mapY = 10.8f - _camHeight;
     }
 }

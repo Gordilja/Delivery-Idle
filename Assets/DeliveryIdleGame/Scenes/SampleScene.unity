@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 103205189}
   - component: {fileID: 103205188}
   m_Layer: 0
-  m_Name: Square
+  m_Name: BackgroundPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,9 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc08e37c5348f774e9bc22b5bb502ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
-  background: {fileID: 1463534247}
-  panSpeed: 10
+  PanSpeed: 10
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +452,7 @@ GameObject:
   - component: {fileID: 1463534248}
   - component: {fileID: 1463534247}
   m_Layer: 0
-  m_Name: Map_0
+  m_Name: BackgroundMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,7 +502,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c3d213e7f3fee73419dd192c6d773b5f, type: 3}
+  m_Sprite: {fileID: 645411862609229670, guid: 37627388f4004764381ac0fd4f6d7861, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
