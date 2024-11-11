@@ -43,7 +43,6 @@ public class CameraPanControll : MonoBehaviour
 
     private void SetupCameraPan()
     {
-        Cursor.lockState = CursorLockMode.Confined;
         screenSize = new Vector2(Screen.width, Screen.height);
         mainCamera = Camera.main;
         
