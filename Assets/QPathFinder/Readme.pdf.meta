@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bb56431ec91b44d2db8bdf113e1a8c33
+timeCreated: 1552534875
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 126951
+  packageName: 2D/3D PathFinder Full
+  packageVersion: 2.0
+  assetPath: Assets/QPathFinder/Readme.pdf
+  uploadId: 408090
