@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85601f0104f37040a37242a520fb17c, type: 3}
+  m_Name: RestaurantAdressSO
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300004, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  Adresses:
+  - Index: 0
+    Name: Dave's BBQ
+    Description: Best BBQ in town!
+    Position: {x: -1.310558, y: -8.536447}
+  - Index: 1
+    Name: 'Dragon Sushi '
+    Description: Fresh and good like in Japan!
+    Position: {x: -15.70012, y: 10.67949}
+  - Index: 2
+    Name: Deez desserts
+    Description: Leaves you with sweetest taste in mouth!
+    Position: {x: -15.57991, y: 8.515781}
+  - Index: 3
+    Name: Donatello Pizza
+    Description: Italian classic in your neighbourhood!
+    Position: {x: -15.59088, y: -4.136114}
+  - Index: 4
+    Name: Dan's wings & things
+    Description: Better call Dan!
+    Position: {x: -8.74131, y: -8.162833}
+  - Index: 5
+    Name: 'Pizza Subs shop  '
+    Description: Freshest pizza in town!
+    Position: {x: 6.77841, y: 5.111536}
