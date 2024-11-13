@@ -157,7 +157,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6019372213015248783}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8683018991679559766}
+        m_TargetAssemblyTypeName: SpawnDelivery, Assembly-CSharp
+        m_MethodName: DeclineDelivery
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3851676561929123682
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +181,7 @@ GameObject:
   - component: {fileID: 127539459956574576}
   - component: {fileID: 2876778867890990107}
   - component: {fileID: 6697319382777687961}
+  - component: {fileID: 8683018991679559766}
   m_Layer: 5
   m_Name: PopUpDelivery
   m_TagString: Untagged
@@ -193,9 +206,9 @@ RectTransform:
   - {fileID: 8506383154176789222}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 187.5, y: -102.6}
+  m_AnchorMin: {x: 0.17952085, y: 0.80629635}
+  m_AnchorMax: {x: 0.17952085, y: 0.80629635}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 480, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2876778867890990107
@@ -236,6 +249,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8683018991679559766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851676561929123682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fddade1a6976f4ea65d35d3288846e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RestaurantAdress: {fileID: 11400000, guid: 48a808df87a53424baac98ddee83bc71, type: 2}
+  HouseAdress: {fileID: 11400000, guid: 630b3b992f049054695b32fb64f05d16, type: 2}
+  AdressText: {fileID: 7094248369441407545}
+  DetailsText: {fileID: 6532925986199677555}
+  HouseIndex: 0
+  RestaurantIndex: 0
 --- !u!1 &4921971930632145569
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.97900003}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5}
+  m_AnchoredPosition: {x: 0, y: -62.794983}
   m_SizeDelta: {x: 0, y: 80}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6616089916898560928
@@ -389,7 +420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2990668897569386861
 RectTransform:
   m_ObjectHideFlags: 0
@@ -630,7 +661,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1314860055168471525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8683018991679559766}
+        m_TargetAssemblyTypeName: SpawnDelivery, Assembly-CSharp
+        m_MethodName: AcceptDelivery
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6222936903868803221
 GameObject:
   m_ObjectHideFlags: 0

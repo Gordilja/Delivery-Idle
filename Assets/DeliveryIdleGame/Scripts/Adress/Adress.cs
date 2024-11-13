@@ -8,4 +8,5 @@ public class Adress
     public string Name;
     public string Description;
     public Vector2 Position;
+    public int NodeIndex;
 }

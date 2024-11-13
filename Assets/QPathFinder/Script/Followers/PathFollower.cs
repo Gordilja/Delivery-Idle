@@ -76,6 +76,7 @@ namespace QPathFinder
                 yield return null;
             }
 
+            GameManager.CarStop?.Invoke();
             if ( QPathFinder.Logger.CanLogInfo ) QPathFinder.Logger.LogInfo ("PathFollower completed!");
         }
 

@@ -18,23 +18,29 @@ MonoBehaviour:
     Name: Dave's BBQ
     Description: Best BBQ in town!
     Position: {x: -1.310558, y: -8.536447}
+    NodeIndex: 16
   - Index: 1
     Name: 'Dragon Sushi '
     Description: Fresh and good like in Japan!
     Position: {x: -15.70012, y: 10.67949}
+    NodeIndex: 85
   - Index: 2
     Name: Deez desserts
     Description: Leaves you with sweetest taste in mouth!
     Position: {x: -15.57991, y: 8.515781}
+    NodeIndex: 87
   - Index: 3
     Name: Donatello Pizza
     Description: Italian classic in your neighbourhood!
     Position: {x: -15.59088, y: -4.136114}
+    NodeIndex: 9
   - Index: 4
     Name: Dan's wings & things
     Description: Better call Dan!
     Position: {x: -8.74131, y: -8.162833}
+    NodeIndex: 18
   - Index: 5
     Name: 'Pizza Subs shop  '
     Description: Freshest pizza in town!
     Position: {x: 6.77841, y: 5.111536}
+    NodeIndex: 68

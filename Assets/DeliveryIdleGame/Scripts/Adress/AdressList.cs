@@ -7,7 +7,7 @@ public class AdressList : MonoBehaviour
     [SerializeField] private HouseAdressSO HouseAdress;
     [SerializeField] private AdressType AdressType;
     [SerializeField] private AdressPrefab Prefab;
-    public List<AdressPrefab> Adresses;
+    private List<AdressPrefab> adresses = new List<AdressPrefab>();
 
     private void OnEnable()
     {
@@ -26,7 +26,8 @@ public class AdressList : MonoBehaviour
                     _prefabObj.transform.position = HouseAdress.Adresses[_i].Position;
                     _prefab.SetText(HouseAdress.Adresses[_i].Name);
                     _prefab.SetSprite(HouseAdress.Icon);
-                    Adresses.Add(_prefab);
+                    adresses.Add(_prefab);
+                    _prefabObj?.SetActive(false);
                 }
 
                 break;
@@ -38,9 +39,35 @@ public class AdressList : MonoBehaviour
                     _prefabObj.transform.position = RestaurantAdress.Adresses[_i].Position;
                     _prefab.SetText(RestaurantAdress.Adresses[_i].Name);
                     _prefab.SetSprite(RestaurantAdress.Icon);
-                    Adresses.Add(_prefab);
+                    adresses.Add(_prefab);
+                    _prefabObj?.SetActive(false);
                 }
                 break;
         }
+    }
+
+    public void ToggleAdress(bool _isActive, int _index) 
+    {
+        adresses[_index].gameObject.SetActive(_isActive);
+    }
+
+    public int GetRandomAdress() 
+    {
+        for (int i = 0; i < adresses.Count; i++)
+        {
+            int randomIndex = Random.Range(0, adresses.Count);
+
+            if (!adresses[randomIndex].gameObject.activeSelf)
+            {
+                return randomIndex;
+            }
+        }
+
+        return -1;
+    }
+
+    public void SetAdressActive() 
+    {
+        
     }
 }
