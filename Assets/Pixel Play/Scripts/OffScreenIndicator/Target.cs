@@ -98,7 +98,7 @@ public class Target : MonoBehaviour
     /// <returns></returns>
     public float GetDistanceFromCamera(Vector3 cameraPosition)
     {
-        float distanceFromCamera = Vector3.Distance(cameraPosition, transform.position);
+        float distanceFromCamera = 1.5f * Vector3.Distance(cameraPosition, transform.position);
         return distanceFromCamera;
     }
 }
