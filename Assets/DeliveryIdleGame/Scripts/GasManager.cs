@@ -15,6 +15,6 @@ public class GasManager : MonoBehaviour
     private void Update()
     {
         if(GameManager.Instance.Car.CarState == CarState.Running)
-            GasSlider.value -= 5 * Time.deltaTime;
+            GasSlider.value -= GameManager.Instance.Car.Speed * Time.deltaTime;
     }
 }

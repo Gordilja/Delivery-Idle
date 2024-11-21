@@ -65,9 +65,4 @@ public class AdressList : MonoBehaviour
 
         return -1;
     }
-
-    public void SetAdressActive() 
-    {
-        
-    }
 }

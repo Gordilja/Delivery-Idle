@@ -7,7 +7,6 @@ public class SpawnDelivery : MonoBehaviour
     [SerializeField] private HouseAdressSO HouseAdress;
 
     [SerializeField] private TMP_Text AdressText;
-    [SerializeField] private TMP_Text DetailsText;
 
     public int HouseIndex;
     public int RestaurantIndex;
@@ -36,12 +35,12 @@ public class SpawnDelivery : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetAdressText() 
+    public void SetAdressText()
     {
-        string _adress = $"Deliver something from {RestaurantAdress.Adresses[RestaurantIndex].Name} to {HouseAdress.Adresses[HouseIndex].Name}";
-        string _details = $"Deliver the meal fresh and fast to adress!";
+        var deliveryDistance = Vector3.Distance(RestaurantAdress.Adresses[RestaurantIndex].Position, HouseAdress.Adresses[HouseIndex].Position);
+        var decimalRound = Mathf.Round(deliveryDistance * 100f) / 100f;
+        string _adress = $"New Order from {RestaurantAdress.Adresses[RestaurantIndex].Name} to {HouseAdress.Adresses[HouseIndex].Name} {decimalRound} miles away";
 
         AdressText.text = _adress ;
-        DetailsText.text = _details ;
     }
 }

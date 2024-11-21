@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using QPathFinder;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class CarMovement : MonoBehaviour
     public PathFollower PathFollower;
     public int Speed;
     public CarState CarState;
+
+    private WaitForSeconds speedBoost = new WaitForSeconds(3);
 
     [HideInInspector] public int fromNode = 1;
     [HideInInspector] public int toNode = 1;
@@ -32,9 +35,16 @@ public class CarMovement : MonoBehaviour
         CarState = CarState.Running;
     }
 
-    public void SetSpeed() 
+    public void SetSpeed(int _add) 
     {
-        Speed += 4;
+        StartCoroutine(SpeedBoostEvent(_add));
+    }
+
+    private IEnumerator SpeedBoostEvent(int _add) 
+    {
+        Speed += _add;
+        yield return speedBoost;
+        Speed -= _add;
     }
 
     private void OnPathFound(List<Node> nodes) 

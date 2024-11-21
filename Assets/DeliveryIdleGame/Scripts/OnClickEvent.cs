@@ -1,14 +1,14 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class OnClickEvent : MonoBehaviour, IPointerClickHandler
+public class OnClickEvent : MonoBehaviour
 {
     [SerializeField] private OnClickEventType EventType;
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData == null) return;
 
-       
+    public int Acceleration;
+
+    private void OnMouseDown()
+    {
+        OnClickAction();
         Debug.Log("Clicked event");
     }
 
@@ -23,7 +23,7 @@ public class OnClickEvent : MonoBehaviour, IPointerClickHandler
                 // Add cash
                 break;
             case OnClickEventType.Accelerate:
-                GameManager.Instance.Car.SetSpeed();
+                GameManager.Instance.Car.SetSpeed(Acceleration);
                 gameObject.SetActive(false);
                 break;
             default:

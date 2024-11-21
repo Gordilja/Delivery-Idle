@@ -25,5 +25,5 @@ AssetOrigin:
   productId: 89754
   packageName: 2D Urban Cars
   packageVersion: 1.1.0
-  assetPath: Assets/2D_urban_cars/sound/doors/door_closing.wav
+  assetPath: Assets/DeliveryIdleGame/ExternalAssets/2D_urban_cars/sound/doors/door_closing.wav
   uploadId: 269619
