@@ -54,7 +54,6 @@ public class CarMovement : MonoBehaviour
 
     private void StoppedCard() 
     {
-
         CarState = CarState.Stopped;
 
         if (GameManager.Instance.AdressList.Count > 0) 

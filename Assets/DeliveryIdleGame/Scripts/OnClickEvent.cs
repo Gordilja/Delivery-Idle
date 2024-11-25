@@ -5,6 +5,8 @@ public class OnClickEvent : MonoBehaviour
     [SerializeField] private OnClickEventType EventType;
 
     public int Acceleration;
+    public int FillAmount;
+    public int CashAmount;
 
     private void OnMouseDown()
     {
@@ -17,18 +19,19 @@ public class OnClickEvent : MonoBehaviour
         switch (EventType)
         {
             case OnClickEventType.Oil:
-                // Add oil
+                GameManager.Instance.GasManager.FillGas(FillAmount);
                 break;
             case OnClickEventType.Coin:
-                // Add cash
+                CoinManager.AddCoins?.Invoke(CashAmount);
                 break;
             case OnClickEventType.Accelerate:
                 GameManager.Instance.Car.SetSpeed(Acceleration);
-                gameObject.SetActive(false);
                 break;
             default:
                 Debug.Log("No type detected");
                 break;
         }
+
+        gameObject.SetActive(false);
     }
 }

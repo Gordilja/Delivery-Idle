@@ -10,11 +10,30 @@ public class GasManager : MonoBehaviour
         GasSlider.maxValue = 100;
         GasSlider.value = 100;
         GasSlider.minValue = 0;
+        GameManager.GameUpdate += GasUpdate;
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        if(GameManager.Instance.Car.CarState == CarState.Running)
+        GameManager.GameUpdate -= GasUpdate;
+    }
+
+    private void GasUpdate()
+    {
+        if (GameManager.Instance.Car.CarState == CarState.Running && GasSlider.value != 0)
+        {
             GasSlider.value -= GameManager.Instance.Car.Speed * Time.deltaTime;
+            return;
+        }
+        
+        if(GasSlider.value == 0)
+        {
+            GameManager.Instance.GameState = GameState.Finished;
+        }
+    }
+
+    public void FillGas(int _add) 
+    {
+        GasSlider.value += _add;
     }
 }

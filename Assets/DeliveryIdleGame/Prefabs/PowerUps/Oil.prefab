@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3365552900726813714}
   - component: {fileID: 284674649139190659}
   - component: {fileID: 4789836330063904122}
+  - component: {fileID: 6778129517929501198}
   m_Layer: 0
   m_Name: Oil
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,6 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventType: 0
+  Acceleration: 0
+  FillAmount: 10
+  CashAmount: 0
 --- !u!61 &4789836330063904122
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,3 +152,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.8298616, y: 4.8141627}
   m_EdgeRadius: 0
+--- !u!114 &6778129517929501198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890348885986748612}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0.9960785, g: 0.43529415, b: 0.050980397, a: 1}
+  needBoxIndicator: 0
+  needArrowIndicator: 1
+  needDistanceText: 1
+  indicator: {fileID: 0}

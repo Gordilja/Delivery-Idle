@@ -13,6 +13,7 @@ namespace QPathFinder
         public Transform _transform { get; set; }
 		protected List<System.Object> _pathToFollow;
 		protected int _currentIndex;
+        protected List<Node> nodes = new List<Node>();
 
         protected Vector3 CastToVec ( System.Object ob ) { if ( ob is Vector3) return (Vector3) ob; Debug.Assert( false, "Invalid cast"); return Vector3.zero; }
         protected Node CastToNode ( System.Object ob ) { if ( ob is Node) return (Node) ob; Debug.Assert( false, "Invalid cast"); return null; }
@@ -47,6 +48,7 @@ namespace QPathFinder
         // follow Nodes 
         public void Follow(List<Node> pointsToFollow, float moveSpeed, bool autoRotate)
         {
+            nodes = pointsToFollow;
             Follow ( pointsToFollow.Cast<System.Object>().ToList(), moveSpeed, autoRotate );
         }
 
@@ -54,7 +56,8 @@ namespace QPathFinder
         { 
             StopAllCoroutines(); 
         }
-        
+
+        private WaitForSeconds arrivedWait = new WaitForSeconds(1f);
         IEnumerator FollowPath()
         {
             yield return null;
@@ -76,6 +79,8 @@ namespace QPathFinder
                 yield return null;
             }
 
+            GameManager.ArrivedAtDestination?.Invoke(nodes[^1].Position);
+            yield return arrivedWait;
             GameManager.CarStop?.Invoke();
             if ( QPathFinder.Logger.CanLogInfo ) QPathFinder.Logger.LogInfo ("PathFollower completed!");
         }

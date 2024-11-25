@@ -11,11 +11,6 @@ public class SpawnDelivery : MonoBehaviour
     public int HouseIndex;
     public int RestaurantIndex;
 
-    private void OnEnable()
-    {
-        SetAdressText();
-    }
-
     public void AcceptDelivery()
     {
         GameManager.Instance.RestaurantAdress.ToggleAdress(true, RestaurantIndex);
@@ -26,6 +21,11 @@ public class SpawnDelivery : MonoBehaviour
 
         if (GameManager.Instance.Car.CarState == CarState.Stopped)
             GameManager.Instance.Car.SetNewDestination(RestaurantAdress.Adresses[RestaurantIndex].NodeIndex);
+
+        GameManager.Instance.ActiveDeliveries.Add(this);
+
+        if(!GameManager.Instance.UI.CurrentDelivery.gameObject.activeSelf)
+            GameManager.Instance.SetCurrentOrder(RestaurantIndex, HouseIndex);
 
         gameObject.SetActive(false);
     }
