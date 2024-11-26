@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class SpawnDelivery : MonoBehaviour
 {
@@ -7,6 +9,8 @@ public class SpawnDelivery : MonoBehaviour
     [SerializeField] private HouseAdressSO HouseAdress;
 
     [SerializeField] private TMP_Text AdressText;
+    public Button AcceptButton;
+    public Button DeclineButton;
 
     public int HouseIndex;
     public int RestaurantIndex;

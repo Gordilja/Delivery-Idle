@@ -302,6 +302,8 @@ MonoBehaviour:
   RestaurantAdress: {fileID: 11400000, guid: 48a808df87a53424baac98ddee83bc71, type: 2}
   HouseAdress: {fileID: 11400000, guid: 630b3b992f049054695b32fb64f05d16, type: 2}
   AdressText: {fileID: 7094248369441407545}
+  AcceptButton: {fileID: 5138665234075935664}
+  DeclineButton: {fileID: 4770360538530871427}
   HouseIndex: 0
   RestaurantIndex: 0
 --- !u!1 &4914556889937091207

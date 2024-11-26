@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     public Player Player;
     private string filePath = Path.Combine(Application.dataPath, "playerData.json");
 
-    private void Start()
+    private void Awake()
     {
         if (File.Exists(filePath))
         {
