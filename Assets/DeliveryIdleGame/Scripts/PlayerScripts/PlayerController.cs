@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.LogWarning("No save file found. Creating a new Player.");
-            Player =  new Player(); // Return a new Player if no save exists
+            Player =  new Player(0, "Player"); // Return a new Player if no save exists
         }
     }
 

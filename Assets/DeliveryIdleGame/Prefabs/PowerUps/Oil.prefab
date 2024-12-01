@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 284674649139190659}
   - component: {fileID: 4789836330063904122}
   - component: {fileID: 6778129517929501198}
+  - component: {fileID: 6140277241814746057}
   m_Layer: 0
   m_Name: Oil
   m_TagString: Untagged
@@ -169,3 +170,19 @@ MonoBehaviour:
   needArrowIndicator: 1
   needDistanceText: 1
   indicator: {fileID: 0}
+--- !u!114 &6140277241814746057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890348885986748612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f835a491dbce2b0409cf3ca4ae96834d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.1
+  frequency: 4
+  squashFactor: 0.75
+  squashSpeed: 5
