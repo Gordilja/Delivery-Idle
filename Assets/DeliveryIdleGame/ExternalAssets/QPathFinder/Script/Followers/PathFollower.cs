@@ -63,7 +63,7 @@ namespace QPathFinder
             yield return null;
             if ( QPathFinder.Logger.CanLogInfo ) QPathFinder.Logger.LogInfo(string.Format("[{0}] Follow(), Speed:{1}", name, moveSpeed));
 
-            while (true)
+            while (GameManager.Instance.GameState != GameState.Finished && GameManager.Instance.Car.CarState != CarState.OutOfFuel)
             {
                 _currentIndex = Mathf.Clamp(_currentIndex, 0, _pathToFollow.Count - 1);
 

@@ -13,6 +13,7 @@ public class OffScreenIndicator : MonoBehaviour
     [Range(0.5f, 0.9f)]
     [Tooltip("Distance offset of the indicators from the centre of the screen")]
     [SerializeField] private float screenBoundOffset = 0.9f;
+    [SerializeField] private ArrowObjectPool ArrowObjectPool;
 
     private Camera mainCamera;
     private Vector3 screenCentre;
@@ -117,14 +118,14 @@ public class OffScreenIndicator : MonoBehaviour
             if(indicator.Type != type)
             {
                 indicator.Activate(false);
-                indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.current.GetPooledObject();
+                indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.GetPooledObject();
                 indicator.Activate(true); // Sets the indicator as active.
             }
         }
         else
         {
-            indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.current.GetPooledObject();
-            //indicator.Activate(true); // Sets the indicator as active.
+            indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.GetPooledObject();
+            indicator.Activate(true); // Sets the indicator as active.
         }
         return indicator;
     }

@@ -57,7 +57,7 @@ public class AdressList : MonoBehaviour
         {
             int randomIndex = Random.Range(0, adresses.Count);
 
-            if (!adresses[randomIndex].gameObject.activeSelf)
+            if (!adresses[randomIndex].gameObject.activeSelf || AdressType == AdressType.House)
             {
                 return randomIndex;
             }

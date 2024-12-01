@@ -1,4 +1,6 @@
 {
     "Coins": 120,
-    "Name": ""
+    "Name": "Player",
+    "Rating": 2.0416667461395265,
+    "DeliveriesDone": 12
 }

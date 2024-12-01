@@ -7,11 +7,11 @@ public class CoinManager : MonoBehaviour
 
     public int CurrentCoins;
 
-    private void Start()
+    public void PrepareCoins()
     {
         AddCoins += UpdateCoins;
         CurrentCoins = GameManager.Instance.PlayerController.Player.Coins;
-        UpdateCoins(CurrentCoins);
+        GameManager.Instance.UI.Coins.text = CurrentCoins.ToString();
     }
 
     private void OnDisable()
@@ -21,8 +21,8 @@ public class CoinManager : MonoBehaviour
 
     private void UpdateCoins(int _coins) 
     {
-        CurrentCoins += _coins;
         GameManager.Instance.PlayerController.Player.Coins += _coins;
+        CurrentCoins = GameManager.Instance.PlayerController.Player.Coins;
         GameManager.Instance.UI.Coins.text = CurrentCoins.ToString();
     }
 }

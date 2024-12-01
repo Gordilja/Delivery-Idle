@@ -1,12 +1,14 @@
+using System;
 using System.IO;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public Player Player;
+    public static Action<float> UpdateRating;
     private string filePath = Path.Combine(Application.dataPath, "playerData.json");
 
-    private void Awake()
+    public void LoadPlayer()
     {
         if (File.Exists(filePath))
         {
@@ -18,7 +20,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.LogWarning("No save file found. Creating a new Player.");
-            Player =  new Player(0, "Player"); // Return a new Player if no save exists
+            Player =  new Player(); // Return a new Player if no save exists
         }
     }
 

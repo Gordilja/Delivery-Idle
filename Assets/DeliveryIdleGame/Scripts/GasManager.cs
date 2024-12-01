@@ -28,7 +28,8 @@ public class GasManager : MonoBehaviour
         
         if(GasSlider.value == 0)
         {
-            GameManager.Instance.GameState = GameState.Finished;
+            GameManager.Instance.Car.CarState = CarState.OutOfFuel;
+            GameManager.Instance.EndGame();
         }
     }
 

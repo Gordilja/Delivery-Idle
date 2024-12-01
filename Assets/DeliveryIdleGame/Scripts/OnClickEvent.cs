@@ -3,6 +3,7 @@ using UnityEngine;
 public class OnClickEvent : MonoBehaviour
 {
     [SerializeField] private OnClickEventType EventType;
+    [SerializeField] private AudioClip soundEffect;
 
     public int Acceleration;
     public int FillAmount;
@@ -10,8 +11,10 @@ public class OnClickEvent : MonoBehaviour
 
     private void OnMouseDown()
     {
-        OnClickAction();
-        Debug.Log("Clicked event");
+        if (GameManager.Instance.GameState == GameState.Started)
+        {
+            OnClickAction();
+        }
     }
 
     private void OnClickAction() 
@@ -25,13 +28,14 @@ public class OnClickEvent : MonoBehaviour
                 CoinManager.AddCoins?.Invoke(CashAmount);
                 break;
             case OnClickEventType.Accelerate:
-                GameManager.Instance.Car.SetSpeed(Acceleration);
+                GameManager.Instance.Car.GiveSpeedBoost(Acceleration);
                 break;
             default:
                 Debug.Log("No type detected");
                 break;
         }
 
+        GameManager.Instance.AudioManager.PlaySFX(soundEffect);
         gameObject.SetActive(false);
     }
 }

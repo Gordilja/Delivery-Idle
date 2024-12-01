@@ -1,6 +1,6 @@
+using System;
 using TMPro;
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class SpawnDelivery : MonoBehaviour
@@ -14,12 +14,9 @@ public class SpawnDelivery : MonoBehaviour
 
     public int HouseIndex;
     public int RestaurantIndex;
-
+    public DateTime DeliveryStartTime;
     public void AcceptDelivery()
     {
-        GameManager.Instance.RestaurantAdress.ToggleAdress(true, RestaurantIndex);
-        GameManager.Instance.HouseAdress.ToggleAdress(true, HouseIndex);
-
         GameManager.Instance.AdressList.Add(RestaurantAdress.Adresses[RestaurantIndex]);
         GameManager.Instance.AdressList.Add(HouseAdress.Adresses[HouseIndex]);
 
@@ -32,6 +29,17 @@ public class SpawnDelivery : MonoBehaviour
             GameManager.Instance.SetCurrentOrder(RestaurantIndex, HouseIndex);
 
         gameObject.SetActive(false);
+
+        DeliveryStartTime = RatingManager.SaveCurrentTime();
+        AdressManager.HomeAdress += TurnOffIndicators;
+    }
+
+    private void TurnOffIndicators(Vector2 _pos) 
+    {
+        if (AdressManager.CheckList(HouseAdress.Adresses, _pos) == AdressManager.ERROR_VECTOR) return;
+
+       
+        AdressManager.HomeAdress -= TurnOffIndicators;
     }
 
     public void DeclineDelivery() 

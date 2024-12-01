@@ -21,7 +21,7 @@ public class CameraPanControll : MonoBehaviour
     private Vector3 PanVector()
     {
         Vector3 _panDirection = Vector3.zero;
-        float _edgeThreshold = 0.5f;
+        float _edgeThreshold = 5f;
 
         if (Input.mousePosition.x > screenSize.x - _edgeThreshold)
             _panDirection.x = 1;
