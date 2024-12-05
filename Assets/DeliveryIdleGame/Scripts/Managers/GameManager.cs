@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public List<Adress> AdressList = new List<Adress>();
 
     [SerializeField] private SpawnDelivery PopUpPrefab;
-    private WaitForSeconds nextOrderAutomated = new WaitForSeconds(5f);
+    private WaitForSeconds nextOrderAutomated = new WaitForSeconds(10f);
 
     private void Awake()
     {

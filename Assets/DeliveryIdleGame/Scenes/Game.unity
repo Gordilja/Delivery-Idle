@@ -166,7 +166,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 890348885986748612, guid: 2b516b07b7550c24797060cc3ccf93f0, type: 3}
   SpawnCount: 10
   Radius: 10.1
-  Timer: 10
+  Timer: 14
 --- !u!1 &19365560
 GameObject:
   m_ObjectHideFlags: 0
@@ -6306,7 +6306,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 278378751886649494, guid: 6d2c780853518fd4995da99029fe5003, type: 3}
   SpawnCount: 10
   Radius: 10.1
-  Timer: 8
+  Timer: 12
 --- !u!1 &809319204
 GameObject:
   m_ObjectHideFlags: 0
@@ -7060,7 +7060,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 278378751886649494, guid: 6d2c780853518fd4995da99029fe5003, type: 3}
   SpawnCount: 10
   Radius: 10.1
-  Timer: 8
+  Timer: 12
 --- !u!1 &1369127643
 GameObject:
   m_ObjectHideFlags: 0
@@ -8510,7 +8510,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 890348885986748612, guid: 2b516b07b7550c24797060cc3ccf93f0, type: 3}
   SpawnCount: 10
   Radius: 10.1
-  Timer: 10
+  Timer: 14
 --- !u!1001 &1884027045
 PrefabInstance:
   m_ObjectHideFlags: 0
