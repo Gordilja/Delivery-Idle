@@ -165,7 +165,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.DefaultCompany.DeliveryIdle
-    Standalone: com.DefaultCompany.2D-URP
+    Standalone: com.DefaultCompany.Delivery-Idle
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -802,7 +802,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0

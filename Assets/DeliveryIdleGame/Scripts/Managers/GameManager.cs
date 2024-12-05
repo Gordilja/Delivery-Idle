@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public static Action CarStop;
     public static Action GameUpdate;
+    public static Action GameStart;
     public static Action<Vector2> ArrivedAtDestination;
 
     public UIParameters UI;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         UI.GamePanel.SetActive(true);
         GameState = GameState.Started;
         StartCoroutine(AutomatedOrders());
+        GameStart?.Invoke();
     }
 
     public void RestartGame() 

@@ -8,12 +8,34 @@ public class CameraPanControll : MonoBehaviour
     private Vector2 screenSize;
     private float mapX, mapY;
 
-    void Start()
+    private float zoom;
+    private float zoomMultiplier = 5f;
+    private float maxZoom = 9f;
+    private float minZoom = 5f;
+    private float velocity = 0f;
+    private float smoothTime = 0.01f;
+
+    void Awake()
     {
+        GameManager.GameStart += StartGame;
         SetupCameraPan();
+        zoom = mainCamera.orthographicSize;
     }
 
-    void Update()
+    private void StartGame() 
+    {
+        GameManager.GameUpdate += CameraPan;
+        GameManager.GameUpdate += ZoomCamera;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.GameStart -= StartGame;
+        GameManager.GameUpdate -= CameraPan;
+        GameManager.GameUpdate -= ZoomCamera;
+    }
+
+    private void CameraPan()
     {
         mainCamera.transform.position = PanVector();
     }
@@ -51,5 +73,23 @@ public class CameraPanControll : MonoBehaviour
         float _camHeight = mainCamera.orthographicSize;
         mapX = 19.2f - _camWidth;
         mapY = 10.8f - _camHeight;
+    }
+
+    private void ZoomCamera() 
+    {
+        float _scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (_scroll != 0)
+        {
+            zoom -= _scroll * zoomMultiplier;
+            zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
+            mainCamera.orthographicSize = Mathf.SmoothDamp(mainCamera.orthographicSize, zoom, ref velocity, smoothTime);
+            float _camWidth = mainCamera.orthographicSize * mainCamera.aspect;
+            float _camHeight = mainCamera.orthographicSize;
+            mapX = 19.2f - _camWidth;
+            mapY = 10.8f - _camHeight;
+            Debug.Log("Zoom in");
+        }
+
+        Debug.Log($"Zoom is {zoom}, _scroll is {_scroll * zoomMultiplier}");
     }
 }

@@ -12,7 +12,17 @@ public class SpawnPowerManager : MonoBehaviour
     private WaitForSeconds timer;
     private List<GameObject> powerUps = new List<GameObject>();
 
-    private void Start()
+    private void Awake()
+    {
+        GameManager.GameStart += StartSpawning;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.GameStart -= StartSpawning;
+    }
+
+    private void StartSpawning()
     {
         for (int i = 0; i < SpawnCount; i++)
         {
