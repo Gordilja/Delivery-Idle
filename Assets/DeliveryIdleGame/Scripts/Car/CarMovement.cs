@@ -73,6 +73,7 @@ public class CarMovement : MonoBehaviour
     private void OnPathFound(List<Node> nodes) 
     {
         PathFollowerUtility.FollowPath(this.transform, nodes, Speed, false);
+        DrawRoadPath.Instance.SetPathFromNodes(nodes);
     }
 
     private void StoppedCard() 
