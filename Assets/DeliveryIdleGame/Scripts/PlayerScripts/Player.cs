@@ -18,6 +18,6 @@ public class Player
     {
         Rating = rating;
         DeliveriesDone++;
-        PlayerController.UpdateRating?.Invoke(Rating);
+        PlayerData.UpdateRating?.Invoke(Rating);
     }
 }

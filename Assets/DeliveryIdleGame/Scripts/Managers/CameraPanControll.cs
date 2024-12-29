@@ -87,9 +87,6 @@ public class CameraPanControll : MonoBehaviour
             float _camHeight = mainCamera.orthographicSize;
             mapX = 19.2f - _camWidth;
             mapY = 10.8f - _camHeight;
-            Debug.Log("Zoom in");
         }
-
-        Debug.Log($"Zoom is {zoom}, _scroll is {_scroll * zoomMultiplier}");
     }
 }

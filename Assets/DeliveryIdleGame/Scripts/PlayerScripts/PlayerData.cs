@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerData : MonoBehaviour
 {
     public Player Player;
     public static Action<float> UpdateRating;

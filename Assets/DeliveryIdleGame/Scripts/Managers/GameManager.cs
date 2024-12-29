@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public AudioManager AudioManager;
     public CarMovement Car;
     public GasManager GasManager;
-    public PlayerController PlayerController;
+    public PlayerData PlayerController;
     public CoinManager CoinManager;
     public StarSliderManager StarSliderPlayerManager;
     public int MaxDeliveries;
