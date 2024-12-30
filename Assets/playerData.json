@@ -1,6 +1,8 @@
 {
-    "Coins": 330,
-    "Name": "Player",
-    "Rating": 1.8000001907348633,
-    "DeliveriesDone": 30
+    "Name": "Jeff",
+    "Coins": 0,
+    "HouseIndex": 0,
+    "RestaurantIndex": 5,
+    "Rating": 0.0,
+    "DeliveriesDone": 0
 }

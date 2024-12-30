@@ -36,8 +36,8 @@ public class AdressManager : MonoBehaviour
             GameManager.Instance.HouseAdress.ToggleAdress(false, GameManager.Instance.ActiveDeliveries[0].HouseIndex);
 
             var _calculatedRating = RatingManager.CalculateRating(GameManager.Instance.ActiveDeliveries[0].DeliveryStartTime);
-            var _newRating = RatingManager.UpdateRating(_calculatedRating, GameManager.Instance.PlayerController.Player.Rating, GameManager.Instance.PlayerController.Player.DeliveriesDone);
-            GameManager.Instance.PlayerController.Player.UpdatePlayerRating(_newRating);
+            var _newRating = RatingManager.UpdateRating(_calculatedRating, PlayerFusion.LocalPlayer.PlayerData.Player.Rating, PlayerFusion.LocalPlayer.PlayerData.Player.DeliveriesDone);
+            PlayerFusion.LocalPlayer.PlayerData.Player.UpdatePlayerRating(_newRating);
 
             _starManager.FillStars(_calculatedRating);
             GameManager.Instance.StarSliderPlayerManager.FillStars(_newRating);
@@ -68,5 +68,15 @@ public class AdressManager : MonoBehaviour
         }
 
         return new Vector2(-1, -1);
+    }
+
+    public List<Adress> GetRestaurants() 
+    {
+        return RestaurantAdress.Adresses;
+    }
+
+    public string GetHouseAdress(int index) 
+    {
+        return HouseAdress.Adresses[index].Name;
     }
 }

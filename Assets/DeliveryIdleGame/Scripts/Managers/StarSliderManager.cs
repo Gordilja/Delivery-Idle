@@ -10,7 +10,7 @@ public class StarSliderManager : MonoBehaviour
     {
         if (IsPlayer)
         {
-            FillStars(GameManager.Instance.PlayerController.Player.Rating);
+            FillStars(PlayerFusion.LocalPlayer.PlayerData.Player.Rating);
         }
     }
 

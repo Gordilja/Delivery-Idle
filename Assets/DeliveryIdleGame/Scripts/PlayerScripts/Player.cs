@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class Player
 {
-    public int Coins;
     public string Name;
+    public int Coins;
+    public int HouseIndex;
+    public int RestaurantIndex;
     public float Rating;
     public int DeliveriesDone;
 
     public Player () 
     { 
+        Name = "Jeff";
         Coins = 0;
-        Name = "Player";
+        HouseIndex = 0;
+        RestaurantIndex = 0;
         Rating = 0;
     }
 

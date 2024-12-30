@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,10 +18,11 @@ public class GameManager : MonoBehaviour
 
     public AdressList RestaurantAdress;
     public AdressList HouseAdress;
+    public AdressManager AdressManager;
     public AudioManager AudioManager;
     public CarMovement Car;
     public GasManager GasManager;
-    public PlayerData PlayerController;
+   
     public CoinManager CoinManager;
     public StarSliderManager StarSliderPlayerManager;
     public int MaxDeliveries;
@@ -31,12 +33,10 @@ public class GameManager : MonoBehaviour
     public List<Adress> AdressList = new List<Adress>();
 
     [SerializeField] private SpawnDelivery PopUpPrefab;
-    private WaitForSeconds nextOrderAutomated = new WaitForSeconds(10f);
 
     private void Awake()
     {
         Instance = this;
-        PlayerController.LoadPlayer();
     }
 
     private void Update()
@@ -45,37 +45,39 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame() 
-    {   
-        CoinManager.PrepareCoins();
-        UI.StartPanel.SetActive(false);
+    {
+#if !PLATFORM_STANDALONE_WIN
         UI.GamePanel.SetActive(true);
         GameState = GameState.Started;
-        StartCoroutine(AutomatedOrders());
+        CoinManager.PrepareCoins();
         GameStart?.Invoke();
+#else
+        UI.ClientPanel.SetActive(true);
+        SetClientText();
+#endif
     }
 
-    public void RestartGame() 
+    public void SendOrder() 
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
+        PlayerFusion.LocalPlayer.RPC_SendOrder();
     }
 
-    private IEnumerator AutomatedOrders() 
+    public void ChangeRestaurantForDelivery() 
     {
-        while (GameState != GameState.Finished) 
-        {
-            yield return nextOrderAutomated;
-
-            if(ActiveDeliveries.Count < MaxDeliveries)
-                GenerateOrder();
-        }
+        PlayerFusion.LocalPlayer.SetRestaurant(UI.RestaurantDropdown.value);
     }
 
-    public void GenerateOrder()
+    private void SetClientText() 
+    {
+        UI.ClientName.text = PlayerFusion.LocalPlayer.PlayerData.Player.Name;
+        UI.ClientHouse.text = AdressManager.GetHouseAdress(PlayerFusion.LocalPlayer.PlayerData.Player.HouseIndex);
+    }
+    
+    public void GenerateOrder(int restaurantIndex, int houseIndex)
     {
         var _newPopup = Instantiate(PopUpPrefab,UI.DeliveryContent);
-        _newPopup.RestaurantIndex = RestaurantAdress.GetRandomAdress();
-        _newPopup.HouseIndex = HouseAdress.GetRandomAdress();
+        _newPopup.RestaurantIndex = restaurantIndex;
+        _newPopup.HouseIndex = houseIndex;
         _newPopup.SetAdressText();
     }
 
@@ -100,10 +102,5 @@ public class GameManager : MonoBehaviour
         UI.EndPanel.SetActive(true);
         GameState = GameState.Finished;
         Car.SetSpeed(0);
-    }
-
-    public void QuitGame() 
-    {
-        Application.Quit();
     }
 }

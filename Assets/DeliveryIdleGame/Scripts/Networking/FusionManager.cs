@@ -1,7 +1,10 @@
 using Fusion;
+using Fusion.Photon.Realtime;
 using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +14,18 @@ public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     private NetworkRunner _runner;
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) 
+
+    private void Awake()
+    {
+        _runner = GetComponent<NetworkRunner>();
+#if PLATFORM_STANDALONE_WIN
+        StartNetworking(GameMode.Host, "Test Game");
+#else
+        JoinLobby();
+#endif
+    }
+
+    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         if (runner.IsServer)
         {
@@ -22,19 +36,55 @@ public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
     }
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) 
+    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
         //end game
+        if(player.IsMasterClient)
+            runner.Shutdown(true, ShutdownReason.GameClosed);
     }
     public void OnInput(NetworkRunner runner, NetworkInput input) { }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
-    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
+    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
+    {
+        SceneManager.LoadScene(SceneManager.GetSceneByBuildIndex(0).name, LoadSceneMode.Single);
+        Destroy(runner.gameObject);
+    }
     public void OnConnectedToServer(NetworkRunner runner) { }
-    public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
+    public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) 
+    {
+        runner.Shutdown(true, ShutdownReason.GameNotFound);
+    }
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
-    public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
+    public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
+    {
+        runner.Shutdown(true, ShutdownReason.Error);
+    }
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
-    public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
+    public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
+    {
+        //lobby
+        if (SessionListUIHandler.Instance == null)
+            return;
+
+        if (sessionList.Count == 0)
+        {
+            Debug.Log("No sessions in lobby");
+
+            SessionListUIHandler.Instance.OnLookingSession();
+        }
+        else 
+        {
+            SessionListUIHandler.Instance.ClearList();
+
+            foreach (SessionInfo sessionInfo in sessionList) 
+            {
+                SessionListUIHandler.Instance.AddToList(sessionInfo);
+
+                Debug.Log("Found and added session");
+            }
+        }
+
+    }
     public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
     public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }
     public void OnSceneLoadDone(NetworkRunner runner) { }
@@ -44,24 +94,32 @@ public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
     public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress) { }
 
-    public void StartGame() 
+    public void StartClient(string sessionName)
     {
-#if PLATFORM_STANDALONE_WIN
-        StartNetworking(GameMode.Host);
-
-#else
-        StartNetworking(GameMode.Client);
-#endif
+        StartNetworking(GameMode.Client, sessionName);
     }
 
-    async void StartNetworking(GameMode mode)
+    private async Task JoinLobby() 
+    {
+        var result = await _runner.JoinSessionLobby(SessionLobby.Custom, "DeliveryID");
+
+        if (!result.Ok)
+        {
+            Debug.Log("Unable to join lobby");
+        }
+        else 
+        {
+            Debug.Log("JoinedLobby");
+        }
+    }
+
+    async void StartNetworking(GameMode mode, string sessionName)
     {
         // Create the Fusion runner and let it know that we will be providing user input
-        _runner = gameObject.AddComponent<NetworkRunner>();
         _runner.ProvideInput = true;
 
         // Create the NetworkSceneInfo from the current scene
-        var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
+        var scene = SceneRef.FromIndex(2);
         var sceneInfo = new NetworkSceneInfo();
         if (scene.IsValid)
         {
@@ -72,9 +130,15 @@ public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
-            SessionName = "Game",
             Scene = scene,
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+            SessionName = sessionName,
+            CustomLobbyName = "DeliveryID",
+            SceneManager = gameObject.GetComponent<NetworkSceneManagerDefault>()
         });
+    }
+
+    public void QuitSession() 
+    {
+        _runner.Shutdown(true, ShutdownReason.Ok);
     }
 }

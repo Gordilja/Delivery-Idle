@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/DeliveryIdleGame/Scenes/Start.unity
+    guid: d9ee7f4adba617642b549a2f31c30449
+  - enabled: 1
+    path: Assets/DeliveryIdleGame/Scenes/Lobby.unity
+    guid: 3fc742d65a640e74e86d127e93e66453
+  - enabled: 1
     path: Assets/DeliveryIdleGame/Scenes/Game.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
