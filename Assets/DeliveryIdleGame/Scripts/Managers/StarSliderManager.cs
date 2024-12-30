@@ -6,7 +6,7 @@ public class StarSliderManager : MonoBehaviour
 {
     [SerializeField] private List<Image> Stars;
     public bool IsPlayer;
-    private void OnEnable()
+    private void Start()
     {
         if (IsPlayer)
         {

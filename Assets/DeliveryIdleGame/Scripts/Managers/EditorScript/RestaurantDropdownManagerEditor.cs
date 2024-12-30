@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(RestaurantDropdownManager))]
 public class RestaurantDropdownManagerEditor : Editor
 {
@@ -17,3 +18,4 @@ public class RestaurantDropdownManagerEditor : Editor
         }
     }
 }
+#endif

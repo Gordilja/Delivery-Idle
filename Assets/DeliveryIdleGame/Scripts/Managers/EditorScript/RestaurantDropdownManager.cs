@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RestaurantDropdownManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown DropDown;
+    [SerializeField] private Dropdown DropDown;
     [SerializeField] private RestaurantAdressSO RestaurantAdress;
-    private List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+    private List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
 
     public void FillDropdown() 
     {
@@ -15,7 +16,8 @@ public class RestaurantDropdownManager : MonoBehaviour
 
         foreach (var item in list)
         {
-            options.Add(new TMP_Dropdown.OptionData(item.Name.ToString()));
+            var data = new Dropdown.OptionData(item.Name);
+            options.Add(data);
         }
 
         DropDown.AddOptions(options);

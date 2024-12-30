@@ -16,6 +16,7 @@ public class SessionListUIHandler : MonoBehaviour
     private void Awake()
     {
         Instance = this; 
+        fusionManager = FindFirstObjectByType<FusionManager>();
         ClearList();
     }
 

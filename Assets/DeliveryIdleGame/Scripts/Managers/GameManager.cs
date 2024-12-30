@@ -46,13 +46,15 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() 
     {
-#if !PLATFORM_STANDALONE_WIN
+#if PLATFORM_STANDALONE_WIN
         UI.GamePanel.SetActive(true);
         GameState = GameState.Started;
         CoinManager.PrepareCoins();
         GameStart?.Invoke();
 #else
         UI.ClientPanel.SetActive(true);
+        UI.CarIndicator.SetActive(false);
+        UI.GamePanel.SetActive(false);
         SetClientText();
 #endif
     }
@@ -62,9 +64,15 @@ public class GameManager : MonoBehaviour
         PlayerFusion.LocalPlayer.RPC_SendOrder();
     }
 
+    public void SendRating()
+    {
+        PlayerFusion.LocalPlayer.RPC_SendRating(PlayerFusion.LocalPlayer.PlayerData.Player.RestaurantIndex, PlayerFusion.LocalPlayer.PlayerData.Player.HouseIndex);
+    }
+
     public void ChangeRestaurantForDelivery() 
     {
         PlayerFusion.LocalPlayer.SetRestaurant(UI.RestaurantDropdown.value);
+        Debug.Log("Changed value on dropdown");
     }
 
     private void SetClientText() 

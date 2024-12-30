@@ -38,7 +38,6 @@ public class SpawnDelivery : MonoBehaviour
     {
         if (AdressManager.CheckList(HouseAdress.Adresses, _pos) == AdressManager.ERROR_VECTOR) return;
 
-       
         AdressManager.HomeAdress -= TurnOffIndicators;
     }
 
