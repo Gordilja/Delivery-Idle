@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void SendOrder() 
     {
-        PlayerFusion.LocalPlayer.RPC_SendOrder();
+        PlayerFusion.LocalPlayer.RPC_SendOrder(PlayerFusion.LocalPlayer.PlayerData.Player.RestaurantIndex, PlayerFusion.LocalPlayer.PlayerData.Player.HouseIndex);
     }
 
     public void SendRating()

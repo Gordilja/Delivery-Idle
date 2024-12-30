@@ -25,9 +25,9 @@ public class PlayerFusion : NetworkBehaviour
     }
 
     [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.StateAuthority)]
-    public void RPC_SendOrder()
+    public void RPC_SendOrder(int restaurantIndex, int houseIndex)
     {
-        GameManager.Instance.GenerateOrder(PlayerData.Player.RestaurantIndex, PlayerData.Player.HouseIndex);
+        GameManager.Instance.GenerateOrder(restaurantIndex, houseIndex);
     }
 
     [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.StateAuthority)]

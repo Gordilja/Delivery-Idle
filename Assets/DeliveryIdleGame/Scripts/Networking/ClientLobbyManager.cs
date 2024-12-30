@@ -1,23 +1,26 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClientLobbyManager : MonoBehaviour
 {
-    [SerializeField] private GameObject LoadingPanel;
-    [SerializeField] private GameObject LobbyPanel;
+    [SerializeField] private GameObject HostPanel;
+    [SerializeField] private GameObject ClientPanel;
     private FusionManager fusionManager;
 
+#if !PLATFORM_STANDALONE_WIN
     private void Awake()
     {
-#if !PLATFORM_STANDALONE_WIN
-        fusionManager = FindFirstObjectByType<FusionManager>();
-        SetLobbyPanel();
-#endif
-    }
+        if(SceneManager.GetActiveScene().name == "Lobby")
+            fusionManager = FindFirstObjectByType<FusionManager>();
 
-    public void SetLobbyPanel() 
+        SetClientPanel();
+    }
+#endif
+
+    public void SetClientPanel() 
     {
-        LoadingPanel.SetActive(false);
-        LobbyPanel.SetActive(true);
+        HostPanel.SetActive(false);
+        ClientPanel.SetActive(true);
     }
 
     public void ExitLobby() 

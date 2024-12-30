@@ -1,9 +1,7 @@
 using Fusion;
-using Fusion.Photon.Realtime;
 using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -46,7 +44,7 @@ public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
-        SceneManager.LoadScene(SceneManager.GetSceneByBuildIndex(0).name, LoadSceneMode.Single);
+        SceneManager.LoadScene("Start", LoadSceneMode.Single);
         Destroy(runner.gameObject);
     }
     public void OnConnectedToServer(NetworkRunner runner) { }
