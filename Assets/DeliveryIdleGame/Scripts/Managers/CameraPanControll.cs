@@ -10,7 +10,7 @@ public class CameraPanControll : MonoBehaviour
 
     private float zoom;
     private float zoomMultiplier = 5f;
-    private float maxZoom = 9f;
+    private float maxZoom = 10.5f;
     private float minZoom = 5f;
     private float velocity = 0f;
     private float smoothTime = 0.01f;

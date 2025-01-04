@@ -19,28 +19,48 @@ MonoBehaviour:
     Description: 1st floor, appartment 3
     Position: {x: 13.94283, y: -0.4742467}
     NodeIndex: 58
-  - Index: 0
-    Name: 3rd Avenue
-    Description: 1st floor, appartment 3
-    Position: {x: 13.94283, y: -0.4742467}
-    NodeIndex: 58
-  - Index: 0
-    Name: 3rd Avenue
-    Description: 1st floor, appartment 3
-    Position: {x: 13.94283, y: -0.4742467}
-    NodeIndex: 58
-  - Index: 0
-    Name: 3rd Avenue
-    Description: 1st floor, appartment 3
-    Position: {x: 13.94283, y: -0.4742467}
-    NodeIndex: 58
-  - Index: 0
-    Name: 3rd Avenue
-    Description: 1st floor, appartment 3
-    Position: {x: 13.94283, y: -0.4742467}
-    NodeIndex: 58
-  - Index: 0
-    Name: 3rd Avenue
-    Description: 1st floor, appartment 3
-    Position: {x: 13.94283, y: -0.4742467}
-    NodeIndex: 58
+  - Index: 1
+    Name: 5th Avenue
+    Description: Apartment 2B, second floor, cozy vibes!
+    Position: {x: 14.21605, y: 4.049017}
+    NodeIndex: 65
+  - Index: 3
+    Name: Maple Street
+    Description: 1st floor, apartment 5.
+    Position: {x: 12.45531, y: -6.667216}
+    NodeIndex: 61
+  - Index: 4
+    Name: Oak Lane
+    Description: Third floor, unit 303.
+    Position: {x: -14.66674, y: 3.362727}
+    NodeIndex: 35
+  - Index: 5
+    Name: Cherry Blossom Drive
+    Description: Apartment 12, top floor.
+    Position: {x: -6.209043, y: -8.536447}
+    NodeIndex: 14
+  - Index: 6
+    Name: Cedar Avenue
+    Description: Ground floor, house 7.
+    Position: {x: -10.49613, y: -2.4852}
+    NodeIndex: 27
+  - Index: 2
+    Name: Elm Street
+    Description: Penthouse suite, apartment 8.
+    Position: {x: -15.97574, y: -7.374132}
+    NodeIndex: 3
+  - Index: 7
+    Name: Parkside View
+    Description: Facing the park, 2nd floor, unit 18.
+    Position: {x: -0.3860028, y: 7.297273}
+    NodeIndex: 70
+  - Index: 8
+    Name: Lakeside Road
+    Description: Ground floor, house 23 by the lake.
+    Position: {x: -16.29872, y: 3.680057}
+    NodeIndex: 34
+  - Index: 9
+    Name: Pine Street
+    Description: Third floor, apartment 10A, near the market.
+    Position: {x: 9.692758, y: -10.27978}
+    NodeIndex: 63

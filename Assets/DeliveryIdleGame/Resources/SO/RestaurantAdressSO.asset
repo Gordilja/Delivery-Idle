@@ -44,3 +44,23 @@ MonoBehaviour:
     Description: Freshest pizza in town!
     Position: {x: 6.77841, y: 5.111536}
     NodeIndex: 68
+  - Index: 6
+    Name: Green Harvest
+    Description: Fresh farm-to-table goodness every day!
+    Position: {x: -14.34284, y: -7.567866}
+    NodeIndex: 4
+  - Index: 7
+    Name: Fusion Haven
+    Description: Where global cuisines meet in harmony.
+    Position: {x: -2.348372, y: -10.0309}
+    NodeIndex: 15
+  - Index: 8
+    Name: Burger Barn
+    Description: Stacked high and bursting with flavor!
+    Position: {x: -10.86182, y: 8.666039}
+    NodeIndex: 82
+  - Index: 9
+    Name: Chili Fiesta
+    Description: Spicy food, spicier vibes!
+    Position: {x: -6.324031, y: 7.824595}
+    NodeIndex: 79
