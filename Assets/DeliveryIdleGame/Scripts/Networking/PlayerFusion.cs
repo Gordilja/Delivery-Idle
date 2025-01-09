@@ -1,21 +1,15 @@
 using Fusion;
 using UnityEngine;
 
-public class PlayerFusion : NetworkBehaviour
+public class PlayerFusion : NetworkBehaviour, IAfterSpawned
 {
     public static PlayerFusion LocalPlayer;
     public PlayerData PlayerData;
 
-    private void OnEnable()
+    public void StartGame() 
     {
-        if(LocalPlayer == null)
-            LocalPlayer = this;
-
         PlayerData.LoadPlayer();
-        PlayerData.Player.HouseIndex = 0;
-
-        if(GameManager.Instance != null)
-            GameManager.Instance.StartGame();
+        GameManager.Instance.StartGame();
     }
 
     public void SetRestaurant(int index) 
@@ -39,9 +33,29 @@ public class PlayerFusion : NetworkBehaviour
     [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.All)]
     public void RPC_OrderFinished(int clientId)
     {
-        // bool me done
         if (clientId != LocalPlayer.PlayerData.Player.Id) return;
         GameManager.Instance.UI.ClientPanel.LoadingPanel.SetActive(false);
         GameManager.Instance.UI.ClientPanel.RatePanel.SetActive(true);
+    }
+
+    public void SendPlayerOrder() 
+    {
+        this.RPC_SendOrder(PlayerData.Player.RestaurantIndex, PlayerData.Player.HouseIndex);
+        GameManager.Instance.UI.ClientPanel.OrderPanel.SetActive(false);
+        GameManager.Instance.UI.ClientPanel.LoadingPanel.SetActive(true);
+    }
+
+    public void SendPlayerRating() 
+    {
+        Vector2 position = GameManager.Instance.AdressManager.GetHousePosition(PlayerData.Player.HouseIndex);
+        this.RPC_SendRating(position.x, position.y, PlayerData.Player.Rating);
+        GameManager.Instance.UI.ClientPanel.RatePanel.SetActive(false);
+        GameManager.Instance.UI.ClientPanel.OrderPanel.SetActive(true);
+    }
+
+    public void AfterSpawned()
+    {
+        LocalPlayer = this;
+        StartGame();
     }
 }

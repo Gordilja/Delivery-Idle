@@ -5,15 +5,6 @@ using System.Collections.Generic;
 public class StarSliderManager : MonoBehaviour
 {
     [SerializeField] private List<Image> Stars;
-    public bool StartMenu;
-
-    private void Start()
-    {
-        if (!StartMenu)
-        {
-            FillStars(PlayerFusion.LocalPlayer.PlayerData.Player.Rating);
-        }
-    }
 
     public void FillStars(float rating) 
     {

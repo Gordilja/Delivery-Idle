@@ -27,18 +27,24 @@ public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (runner.IsServer)
         {
-            // Create a unique position for the player
-            Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.PlayerCount) * 3, 1, 0);
-            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
+            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, Vector3.zero, Quaternion.identity, player);
             // Keep track of the player avatars for easy access
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
+
+        runner.GetPlayerObject(player).name = $"Player{player.PlayerId}";
     }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
         //end game
-        if(player.IsMasterClient)
+        if (player.IsMasterClient)
+        {
             runner.Shutdown(true, ShutdownReason.GameClosed);
+        }
+        else 
+        {
+            runner.Despawn(runner.GetPlayerObject(player));
+        }
     }
     public void OnInput(NetworkRunner runner, NetworkInput input) { }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }

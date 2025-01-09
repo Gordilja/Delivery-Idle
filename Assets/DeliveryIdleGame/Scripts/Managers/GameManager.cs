@@ -49,27 +49,24 @@ public class GameManager : MonoBehaviour
         GameState = GameState.Started;
         CoinManager.PrepareCoins();
         GameStart?.Invoke();
+        StarSliderPlayerManager.FillStars(PlayerFusion.LocalPlayer.PlayerData.Player.Rating);
 #else
         UI.ClientPanel.gameObject.SetActive(true);
         UI.CarIndicator.SetActive(false);
         UI.GamePanel.SetActive(false);
         SetClientText();
+        PlayerFusion.LocalPlayer.PlayerData.Player.HouseIndex = AdressManager.GetRandomHouseAdress();
 #endif
     }
 
     public void SendOrder() 
     {
-        PlayerFusion.LocalPlayer.RPC_SendOrder(PlayerFusion.LocalPlayer.PlayerData.Player.RestaurantIndex, PlayerFusion.LocalPlayer.PlayerData.Player.HouseIndex);
-        UI.ClientPanel.OrderPanel.SetActive(false);
-        UI.ClientPanel.LoadingPanel.SetActive(true);
+        PlayerFusion.LocalPlayer.SendPlayerOrder();
     }
 
     public void SendRating()
     {
-        Vector2 position = AdressManager.GetHousePosition(PlayerFusion.LocalPlayer.PlayerData.Player.HouseIndex);
-        PlayerFusion.LocalPlayer.RPC_SendRating(position.x, position.y, PlayerFusion.LocalPlayer.PlayerData.Player.Rating);
-        UI.ClientPanel.RatePanel.SetActive(false);
-        UI.ClientPanel.OrderPanel.SetActive(true);
+        PlayerFusion.LocalPlayer.SendPlayerRating();
     }
 
     private void SetClientText() 

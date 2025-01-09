@@ -75,4 +75,10 @@ public class AdressManager : MonoBehaviour
     {
         return HouseAdress.Adresses[index].Position;
     }
+
+    public int GetRandomHouseAdress()
+    {
+        int index = UnityEngine.Random.Range(0, HouseAdress.Adresses.Count);
+        return index;
+    }
 }

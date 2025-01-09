@@ -21,7 +21,7 @@ public class RatingManager : MonoBehaviour
 
     private void StarSprites(int index) 
     {
-        //PlayerFusion.LocalPlayer.PlayerData.Player.Rating = index;
+        PlayerFusion.LocalPlayer.PlayerData.Player.Rating = index;
         switch (index) 
         {
             case 1:
@@ -59,8 +59,8 @@ public class RatingManager : MonoBehaviour
         }
         else
         {
-            // Weighted average for cumulative rating
-            currentRating = ((currentRating * ratingCount) + newRating) / (ratingCount + 1);
+            // Calculate the new cumulative rating using a weighted average
+            currentRating = ((currentRating * (ratingCount - 1)) + newRating) / ratingCount;
         }
 
         Debug.Log($"Updated Rating: {currentRating} (After {ratingCount} updates)");
