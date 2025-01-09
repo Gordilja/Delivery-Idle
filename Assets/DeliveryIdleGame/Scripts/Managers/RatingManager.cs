@@ -1,45 +1,52 @@
+using UnityEngine.UI;
 using UnityEngine;
-using System;
+using System.Collections.Generic;
 
-public static class RatingManager
+public class RatingManager : MonoBehaviour
 {
-    // Default parameters (can be modified in calls)
-    public static float MaxRating = 3f;          // Maximum rating
-    public static float TimeThreshold = 10f;     // Base time threshold in seconds
-    public static float DeductionInterval = 5f;  // Time interval for deductions
-    public static float DeductionRate = 0.5f;    // Rating deduction per interval
+    public float MaxRating = 3f;
+    [SerializeField] private Sprite EmptyStar;
+    [SerializeField] private Sprite Star;
+    [SerializeField] private List<Image> Stars;
 
-    // Save the current time and return it
-    public static DateTime SaveCurrentTime()
+    private void OnEnable()
     {
-        DateTime startTime = DateTime.Now;
-        Debug.Log("Start time saved: " + startTime);
-        return startTime;
+        StarSprites(0);
     }
 
-    // Calculate the rating based on elapsed time
-    public static float CalculateRating(DateTime startTime)
+    public void SetStarRating(int rate) 
     {
-        if (startTime == default(DateTime))
+        StarSprites(rate);
+    }
+
+    private void StarSprites(int index) 
+    {
+        //PlayerFusion.LocalPlayer.PlayerData.Player.Rating = index;
+        switch (index) 
         {
-            Debug.LogWarning("Start time has not been set!");
-            return 0f;
+            case 1:
+                Stars[0].sprite = Star;
+                Stars[^2].sprite = EmptyStar;
+                Stars[^1].sprite = EmptyStar;
+                break;
+            case 2:
+                Stars[0].sprite = Star;
+                Stars[1].sprite = Star;
+                Stars[^1].sprite = EmptyStar;
+                break;  
+            case 3:
+                Stars[0].sprite = Star;
+                Stars[1].sprite = Star;
+                Stars[2].sprite = Star;
+                break;
+            default:
+                foreach (var star in Stars) 
+                {
+                    star.sprite = EmptyStar;
+                }
+                Debug.Log("No rate");
+                break;
         }
-
-        TimeSpan elapsed = DateTime.Now - startTime;
-        float elapsedSeconds = (float)elapsed.TotalSeconds;
-
-        // Calculate rating
-        if (elapsedSeconds <= TimeThreshold)
-        {
-            return MaxRating;
-        }
-
-        float overThresholdTime = elapsedSeconds - TimeThreshold;
-        float deductions = Mathf.Floor(overThresholdTime / DeductionInterval) * DeductionRate;
-        float rating = Mathf.Max(0f, MaxRating - deductions);
-
-        return rating;
     }
 
     // Update the cumulative rating based on a new rating

@@ -11,7 +11,6 @@ public class AdressManager : MonoBehaviour
 
     [SerializeField] private RestaurantAdressSO RestaurantAdress;
     [SerializeField] private HouseAdressSO HouseAdress;
-    [SerializeField] private GameObject Coin;
 
     private void Start()
     {
@@ -27,20 +26,12 @@ public class AdressManager : MonoBehaviour
     {
         if (CheckList(HouseAdress.Adresses, _position) != ERROR_VECTOR)
         {
-            HomeAdress?.Invoke(_position); 
-            var _coin = Instantiate(Coin);
-            _coin.transform.position = _position;
-            var _starManager = _coin.GetComponent<StarSliderManager>();
+            HomeAdress?.Invoke(_position);
+            PlayerFusion.LocalPlayer.RPC_OrderFinished(GameManager.Instance.ActiveDeliveries[0].ClientId);
 
             GameManager.Instance.RestaurantAdress.ToggleAdress(false, GameManager.Instance.ActiveDeliveries[0].RestaurantIndex);
             GameManager.Instance.HouseAdress.ToggleAdress(false, GameManager.Instance.ActiveDeliveries[0].HouseIndex);
-
-            var _calculatedRating = RatingManager.CalculateRating(GameManager.Instance.ActiveDeliveries[0].DeliveryStartTime);
-            var _newRating = RatingManager.UpdateRating(_calculatedRating, PlayerFusion.LocalPlayer.PlayerData.Player.Rating, PlayerFusion.LocalPlayer.PlayerData.Player.DeliveriesDone);
-            PlayerFusion.LocalPlayer.PlayerData.Player.UpdatePlayerRating(_newRating);
-
-            _starManager.FillStars(_calculatedRating);
-            GameManager.Instance.StarSliderPlayerManager.FillStars(_newRating);
+           
             GameManager.Instance.ActiveDeliveries.RemoveAt(0);
 
             if (GameManager.Instance.ActiveDeliveries.Count > 0)
@@ -78,5 +69,10 @@ public class AdressManager : MonoBehaviour
     public string GetHouseAdress(int index) 
     {
         return HouseAdress.Adresses[index].Name;
+    }
+
+    public Vector2 GetHousePosition(int index) 
+    {
+        return HouseAdress.Adresses[index].Position;
     }
 }

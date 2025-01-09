@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player
 {
+    public int Id;
     public string Name;
     public int Coins;
     public int HouseIndex;

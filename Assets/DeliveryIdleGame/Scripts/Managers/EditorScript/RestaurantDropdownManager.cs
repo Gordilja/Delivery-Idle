@@ -1,28 +1,51 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class RestaurantDropdownManager : MonoBehaviour
 {
-    [SerializeField] private Dropdown DropDown;
+    [SerializeField] private Transform ButtonParent;
+    [SerializeField] private GameObject RestaurantButton;
     [SerializeField] private RestaurantAdressSO RestaurantAdress;
-    private List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
+    public static List<Button> RestaurantButtons = new List<Button>();
 
-    public void FillDropdown() 
+    private void OnEnable()
     {
-        DropDown.ClearOptions();
+        FillButtonList();
+    }
+
+    public void FillButtonList()
+    {
+        ClearRestaurantList();
         var list = RestaurantAdress.Adresses;
-
-        foreach (var item in list)
+        for (var i = 0; i < list.Count; i++)
         {
-            var data = new Dropdown.OptionData(item.Name);
-            options.Add(data);
+            var button = Instantiate(RestaurantButton, ButtonParent).GetComponent<Button>();
+            button.gameObject.name = list[i].Name;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = list[i].Name.ToString();
+            var onClick = button.GetComponent<OnClickButton>();
+            onClick.index = i;
+            button.onClick.AddListener(onClick.SetOnClick);
+            RestaurantButtons.Add(button);
+            if (i > 0)
+            {
+                var color = button.image.color;
+                color.a = 0.5f;
+                button.image.color = color;
+            }
         }
+    }
 
-        DropDown.AddOptions(options);
-
-        DropDown.value = 0;
-        DropDown.RefreshShownValue();
+    private void ClearRestaurantList()
+    {
+        RestaurantButtons.Clear();
+        var childCount = ButtonParent.childCount;
+        for (var i = childCount - 1; i >= 0; i--) 
+        {
+            Destroy(ButtonParent.GetChild(i).gameObject);
+        }
     }
 }

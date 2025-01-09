@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +13,8 @@ public class SpawnDelivery : MonoBehaviour
 
     public int HouseIndex;
     public int RestaurantIndex;
-    public DateTime DeliveryStartTime;
+    public int ClientId;
+
     public void AcceptDelivery()
     {
         GameManager.Instance.AdressList.Add(RestaurantAdress.Adresses[RestaurantIndex]);
@@ -30,7 +30,6 @@ public class SpawnDelivery : MonoBehaviour
 
         gameObject.SetActive(false);
 
-        DeliveryStartTime = RatingManager.SaveCurrentTime();
         AdressManager.HomeAdress += TurnOffIndicators;
     }
 

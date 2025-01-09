@@ -31,8 +31,17 @@ public class PlayerFusion : NetworkBehaviour
     }
 
     [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.StateAuthority)]
-    public void RPC_SendRating(int restaurantIndex, int houseIndex)
+    public void RPC_SendRating(float vectorx, float vectory, float rating)
     {
-        GameManager.Instance.GenerateOrder(restaurantIndex, houseIndex);
+        GameManager.Instance.GetRating(vectorx, vectory, rating);
+    }
+
+    [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.All)]
+    public void RPC_OrderFinished(int clientId)
+    {
+        // bool me done
+        if (clientId != LocalPlayer.PlayerData.Player.Id) return;
+        GameManager.Instance.UI.ClientPanel.LoadingPanel.SetActive(false);
+        GameManager.Instance.UI.ClientPanel.RatePanel.SetActive(true);
     }
 }

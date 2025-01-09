@@ -1,11 +1,10 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class UIParameters : MonoBehaviour
 {
     public GameObject GamePanel;
-    public GameObject ClientPanel;
+    public ClientUIParameters ClientPanel;
     public GameObject CarIndicator;
     public TextMeshProUGUI ClientName;
     public TextMeshProUGUI ClientHouse;
@@ -13,5 +12,4 @@ public class UIParameters : MonoBehaviour
     public TextMeshProUGUI Coins;
     public Transform DeliveryContent;
     public SpawnDelivery CurrentDelivery;
-    public Dropdown RestaurantDropdown;
 }

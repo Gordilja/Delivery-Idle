@@ -14,7 +14,7 @@ public class RestaurantDropdownManagerEditor : Editor
         RestaurantDropdownManager myScript = (RestaurantDropdownManager)target;
         if (GUILayout.Button("Populate Dropdown"))
         {
-            myScript.FillDropdown();
+            myScript.FillButtonList();
         }
     }
 }
