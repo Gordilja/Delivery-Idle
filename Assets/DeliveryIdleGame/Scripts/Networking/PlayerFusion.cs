@@ -56,6 +56,7 @@ public class PlayerFusion : NetworkBehaviour, IAfterSpawned
     public void AfterSpawned()
     {
         LocalPlayer = this;
+        gameObject.name = $"Player: {GetComponent<NetworkObject>().Id}";
         StartGame();
     }
 }

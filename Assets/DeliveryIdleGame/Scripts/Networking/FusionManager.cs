@@ -31,8 +31,6 @@ public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
             // Keep track of the player avatars for easy access
             _spawnedCharacters.Add(player, networkPlayerObject);
         }
-
-        runner.GetPlayerObject(player).name = $"Player{player.PlayerId}";
     }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
