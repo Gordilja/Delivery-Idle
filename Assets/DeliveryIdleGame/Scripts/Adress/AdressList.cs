@@ -50,19 +50,4 @@ public class AdressList : MonoBehaviour
     {
         adresses[_index].gameObject.SetActive(_isActive);
     }
-
-    public int GetRandomAdress() 
-    {
-        for (int i = 0; i < adresses.Count; i++)
-        {
-            int randomIndex = Random.Range(0, adresses.Count);
-
-            if (!adresses[randomIndex].gameObject.activeSelf || AdressType == AdressType.House)
-            {
-                return randomIndex;
-            }
-        }
-
-        return -1;
-    }
 }

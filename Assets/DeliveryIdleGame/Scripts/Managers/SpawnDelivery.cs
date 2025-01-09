@@ -30,6 +30,8 @@ public class SpawnDelivery : MonoBehaviour
 
         gameObject.SetActive(false);
 
+        GameManager.Instance.RestaurantAdress.ToggleAdress(true, GameManager.Instance.ActiveDeliveries[0].RestaurantIndex);
+        GameManager.Instance.HouseAdress.ToggleAdress(true, GameManager.Instance.ActiveDeliveries[0].HouseIndex);
         AdressManager.HomeAdress += TurnOffIndicators;
     }
 
@@ -42,6 +44,7 @@ public class SpawnDelivery : MonoBehaviour
 
     public void DeclineDelivery() 
     {
+        PlayerFusion.LocalPlayer.RPC_OrderDeclined(ClientId);
         Destroy(gameObject);
     }
 

@@ -10,7 +10,7 @@ public class CoinManager : MonoBehaviour
     public void PrepareCoins()
     {
         AddCoins += UpdateCoins;
-        CurrentCoins = PlayerFusion.LocalPlayer.PlayerData.Player.Coins;
+        CurrentCoins = PlayerFusion.LocalPlayer.Player.Coins;
         GameManager.Instance.UI.Coins.text = CurrentCoins.ToString();
     }
 
@@ -21,8 +21,8 @@ public class CoinManager : MonoBehaviour
 
     private void UpdateCoins(int _coins) 
     {
-        PlayerFusion.LocalPlayer.PlayerData.Player.Coins += _coins;
-        CurrentCoins = PlayerFusion.LocalPlayer.PlayerData.Player.Coins;
+        PlayerFusion.LocalPlayer.Player.Coins += _coins;
+        CurrentCoins = PlayerFusion.LocalPlayer.Player.Coins;
         GameManager.Instance.UI.Coins.text = CurrentCoins.ToString();
     }
 }

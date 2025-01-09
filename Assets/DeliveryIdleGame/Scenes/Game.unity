@@ -347,8 +347,8 @@ MonoBehaviour:
   ActiveDeliveries: []
   GameState: 0
   AdressList: []
-  PopUp: {fileID: 0}
-  Coin: {fileID: 0}
+  PopUp: {fileID: 8683018991679559766, guid: 2f4658f3d1bdcd245847789c426bbbd5, type: 3}
+  Coin: {fileID: 8529924008677278392, guid: 13d8948d24a5bdf458d5a06873713dc9, type: 3}
 --- !u!4 &90823008
 Transform:
   m_ObjectHideFlags: 0
@@ -584,6 +584,7 @@ MonoBehaviour:
   OrderPanel: {fileID: 1800876925}
   LoadingPanel: {fileID: 8262921216800671246}
   RatePanel: {fileID: 866401816}
+  Message: {fileID: 6601956766314029476}
 --- !u!1 &163059285
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,8 +638,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 524499653}
-  m_Horizontal: 1
-  m_Vertical: 0
+  m_Horizontal: 0
+  m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
@@ -10986,7 +10987,6 @@ MonoBehaviour:
   - {fileID: 4768164002718144673}
   - {fileID: 9011511104769422399}
   - {fileID: 1972443131072881198}
-  StartMenu: 0
 --- !u!1 &9020614665545366661
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,17 +4,19 @@ using TMPro;
 public class StartMenuPlayerManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI Gold;
+    [SerializeField] private TextMeshProUGUI DeliveriesNum;
     [SerializeField] private  StarSliderManager StarSliderManager;
-    [SerializeField] private PlayerData PlayerData;
+    public Player Player;
 
     private void OnEnable()
     {
-        PlayerData.LoadPlayer();
+        Player = PlayerData.LoadPlayer(Player);
     }
 
     private void Start()
     {
-        Gold.text = PlayerData.Player.Coins.ToString();
-        StarSliderManager.FillStars(PlayerData.Player.Rating);
+        Gold.text = Player.Coins.ToString();
+        DeliveriesNum.text = $"Deliveries done: {Player.DeliveriesDone}";
+        StarSliderManager.FillStars(Player.Rating);
     }
 }

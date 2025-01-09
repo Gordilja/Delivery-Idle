@@ -21,7 +21,7 @@ public class RatingManager : MonoBehaviour
 
     private void StarSprites(int index) 
     {
-        PlayerFusion.LocalPlayer.PlayerData.Player.Rating = index;
+        PlayerFusion.LocalPlayer.Player.Rating = index;
         switch (index) 
         {
             case 1:

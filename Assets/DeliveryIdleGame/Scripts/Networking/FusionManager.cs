@@ -48,6 +48,11 @@ public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
+        if (runner.IsServer)
+        {
+            PlayerData.SavePlayer(PlayerFusion.LocalPlayer.Player);
+            Debug.Log($"Game saved, rating: {PlayerFusion.LocalPlayer.Player.Rating}, deliveries num : {PlayerFusion.LocalPlayer.Player.DeliveriesDone}, coins: {PlayerFusion.LocalPlayer.Player.Coins}");
+        }
         SceneManager.LoadScene("Start", LoadSceneMode.Single);
         Destroy(runner.gameObject);
     }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Collections;
+using Fusion;
 
 public class GameManager : MonoBehaviour
 {
@@ -49,13 +51,13 @@ public class GameManager : MonoBehaviour
         GameState = GameState.Started;
         CoinManager.PrepareCoins();
         GameStart?.Invoke();
-        StarSliderPlayerManager.FillStars(PlayerFusion.LocalPlayer.PlayerData.Player.Rating);
+        StarSliderPlayerManager.FillStars(PlayerFusion.LocalPlayer.Player.Rating);
 #else
         UI.ClientPanel.gameObject.SetActive(true);
         UI.CarIndicator.SetActive(false);
         UI.GamePanel.SetActive(false);
         SetClientText();
-        PlayerFusion.LocalPlayer.PlayerData.Player.HouseIndex = AdressManager.GetRandomHouseAdress();
+        PlayerFusion.LocalPlayer.Player.HouseIndex = AdressManager.GetRandomHouseAdress();
 #endif
     }
 
@@ -69,10 +71,10 @@ public class GameManager : MonoBehaviour
         PlayerFusion.LocalPlayer.SendPlayerRating();
     }
 
-    private void SetClientText() 
+    public void SetClientText() 
     {
-        UI.ClientName.text = PlayerFusion.LocalPlayer.PlayerData.Player.Name;
-        UI.ClientHouse.text = AdressManager.GetHouseAdress(PlayerFusion.LocalPlayer.PlayerData.Player.HouseIndex);
+        UI.ClientName.text = PlayerFusion.LocalPlayer.Player.Name;
+        UI.ClientHouse.text = AdressManager.GetHouseAdress(PlayerFusion.LocalPlayer.Player.HouseIndex);
     }
     
     public void GenerateOrder(int restaurantIndex, int houseIndex)
@@ -83,14 +85,26 @@ public class GameManager : MonoBehaviour
         _newPopup.SetAdressText();
     }
 
+    private WaitForSeconds msgTimer = new WaitForSeconds(3f);
+    public IEnumerator OrderDecline() 
+    {
+        UI.ClientPanel.Message.text = "Order declined";
+        yield return msgTimer;
+        UI.ClientPanel.Message.text = "Waiting for order";
+        UI.ClientPanel.LoadingPanel.SetActive(false);
+        UI.ClientPanel.OrderPanel.SetActive(true);
+        PlayerFusion.LocalPlayer.Player.HouseIndex = AdressManager.GetRandomHouseAdress();
+        SetClientText();
+    }
+
     public void GetRating(float vectorx, float vectory, float rating) 
     {
         Vector2 _position = new Vector2(vectorx, vectory);
         var _coin = Instantiate(Coin);
         _coin.transform.position = _position;
         var _starManager = _coin.GetComponent<StarSliderManager>();
-        var _newRating = RatingManager.UpdateRating(rating, PlayerFusion.LocalPlayer.PlayerData.Player.Rating, PlayerFusion.LocalPlayer.PlayerData.Player.DeliveriesDone);
-        PlayerFusion.LocalPlayer.PlayerData.Player.UpdatePlayerRating(_newRating);
+        var _newRating = RatingManager.UpdateRating(rating, PlayerFusion.LocalPlayer.Player.Rating, PlayerFusion.LocalPlayer.Player.DeliveriesDone);
+        PlayerFusion.LocalPlayer.Player.UpdatePlayerRating(_newRating);
 
         _starManager.FillStars(rating);
         StarSliderPlayerManager.FillStars(_newRating);
@@ -117,5 +131,10 @@ public class GameManager : MonoBehaviour
         UI.EndPanel.SetActive(true);
         GameState = GameState.Finished;
         Car.SetSpeed(0);
+    }
+
+    public void RestartGame() 
+    {
+        FindFirstObjectByType<FusionManager>().GetComponent<NetworkRunner>().Shutdown(true, ShutdownReason.Ok);
     }
 }
